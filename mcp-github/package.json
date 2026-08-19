@@ -1,0 +1,11 @@
+{
+  "name": "mcp-github-integration",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MCP server for GitHub — npm scripts wrap Python server with integration preflight",
+  "scripts": {
+    "test:integration": "bash scripts/preflight-test.sh",
+    "start": "npm run test:integration && python server.py",
+    "setup": "bash scripts/setup-github-app.sh"
+  }
+}

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-shell-runner"
+version = "0.3.1"
+description = "Safe shell command execution library for AI agent workflows"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+agent-shell = "agent_shell_runner.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

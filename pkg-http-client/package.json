@@ -1,0 +1,9 @@
+{
+  "name": "agent-http-client",
+  "version": "0.2.4",
+  "private": true,
+  "scripts": {
+    "test:integration": "bash scripts/preflight-test.sh",
+    "start": "npm run test:integration && agent-curl GET https://httpbin.org/get"
+  }
+}

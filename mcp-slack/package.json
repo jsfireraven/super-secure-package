@@ -1,0 +1,9 @@
+{
+  "name": "mcp-slack-messenger",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test:integration": "bash scripts/preflight-test.sh",
+    "start": "npm run test:integration && python server.py"
+  }
+}
